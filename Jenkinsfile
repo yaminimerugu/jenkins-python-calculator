@@ -11,7 +11,7 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh 'C:\Users\yamin\AppData\Local\Programs\Python\Python312\python -m venv venv'
+                    sh  'C:\\Users\\yamin\\AppData\\Local\\Programs\\Python\\Python312\\python -m venv venv'
                     sh 'source venv/bin/activate && pip install -r requirements.txt'
                 }
             }
