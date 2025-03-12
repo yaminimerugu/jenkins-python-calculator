@@ -11,7 +11,7 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh 'python3 -m venv venv'
+                    sh 'C:\Users\yamin\AppData\Local\Programs\Python\Python312\python -m venv venv'
                     sh 'source venv/bin/activate && pip install -r requirements.txt'
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     echo "Sending email notification..."
-                    mail to: 'your_college_email@example.com',
+                    mail to: 'ymerugu6104@Conestogac.on.ca',
                          subject: "Jenkins Build Notification",
                          body: "The Jenkins build has completed. Check Jenkins for details."
                 }
