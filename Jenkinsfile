@@ -11,8 +11,10 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh  'C:\\Users\\yamin\\AppData\\Local\\Programs\\Python\\Python312\\python -m venv venv'
-                    sh 'source venv/bin/activate && pip install -r requirements.txt'
+                    // Use Windows style paths for virtual environment setup
+                    bat 'C:\\Users\\yamin\\AppData\\Local\\Programs\\Python\\Python312\\python -m venv venv'
+                    // Activate the virtual environment and install dependencies
+                    bat 'venv\\Scripts\\pip install -r requirements.txt'
                 }
             }
         }
@@ -21,7 +23,8 @@ pipeline {
             steps {
                 script {
                     echo "Building the application..."
-                    sh 'python --version'  // Example build step
+                    // Use Windows path for Python version check
+                    bat 'venv\\Scripts\\python --version'
                 }
             }
         }
@@ -30,7 +33,8 @@ pipeline {
             steps {
                 script {
                     echo "Running tests..."
-                    sh 'source venv/bin/activate && python -m unittest test_calculator.py'
+                    // Activate the virtual environment and run tests
+                    bat 'venv\\Scripts\\python -m unittest test_calculator.py'
                 }
             }
         }
