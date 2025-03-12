@@ -1,1 +1,4 @@
-unittest
+# Add necessary external packages here
+pytest
+requests
+# Any other dependencies
