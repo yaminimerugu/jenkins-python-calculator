@@ -1,5 +1,5 @@
 pipeline {
-    agent any  // Use any available agent
+    agent any
 
     stages {
         stage('Checkout') {
@@ -8,12 +8,16 @@ pipeline {
             }
         }
 
+        stage('List Files') {
+            steps {
+                bat 'dir'  // List files in the current workspace for debugging
+            }
+        }
+
         stage('Setup') {
             steps {
                 script {
-                    // Use Windows style paths for virtual environment setup
                     bat 'C:\\Users\\yamin\\AppData\\Local\\Programs\\Python\\Python312\\python -m venv venv'
-                    // Activate the virtual environment and install dependencies
                     bat 'venv\\Scripts\\pip install -r requirements.txt'
                 }
             }
@@ -23,7 +27,6 @@ pipeline {
             steps {
                 script {
                     echo "Building the application..."
-                    // Use Windows path for Python version check
                     bat 'venv\\Scripts\\python --version'
                 }
             }
@@ -33,7 +36,6 @@ pipeline {
             steps {
                 script {
                     echo "Running tests..."
-                    // Activate the virtual environment and run tests
                     bat 'venv\\Scripts\\python -m unittest test_calculator.py'
                 }
             }
